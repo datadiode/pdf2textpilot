@@ -1,0 +1,58 @@
+.text
+{
+  COLOR: #000000;
+  font-family: Verdana; 
+  FONT-SIZE: 15px;
+}
+
+TD
+{
+  COLOR: #000000;
+  font-family: Verdana; 
+  FONT-SIZE: 15px;
+}
+
+.title
+{
+  COLOR: #000000;
+  font-family: Verdana;
+  FONT-SIZE: 21px;
+  FONT-WEIGHT: bold;
+}
+
+.subtitle
+{
+  COLOR: #000000;
+  font-family: Verdana;
+  FONT-SIZE: 19px;
+  FONT-WEIGHT: bold;
+  margin-top: 30px;
+}
+
+.rshift
+{
+  COLOR: #000000;
+  font-family: Verdana; 
+  FONT-SIZE: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.rshift2
+{
+  COLOR: #000000;
+  font-family: Verdana; 
+  FONT-SIZE: 12px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.red
+{
+  COLOR: #ff0000;
+  font-family: Courier New; 
+  FONT-SIZE: 14px;
+  font-weight: bold;
+}

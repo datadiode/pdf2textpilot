@@ -1,0 +1,222 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "atlres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDC_DRAGCUR             CURSOR                  "arrowcop.cur"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "messageboxalert.ico"
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""atlres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\PDF2Text.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINDLG DIALOGEX 0, 0, 323, 265
+STYLE DS_SETFONT | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "PDF2Text Pilot"
+FONT 8, "MS Sans Serif", 400, 0, 0xCC
+BEGIN
+    PUSHBUTTON      "Add File",IDC_btnAddFile,250,26,66,14
+    PUSHBUTTON      "Add Folder",IDC_btnAddFolder,249,42,67,14
+    PUSHBUTTON      "Move Up",IDC_btnMoveUp,250,79,66,14,WS_DISABLED
+    PUSHBUTTON      "Move Down",IDC_BtnMoveDown,250,96,66,15,WS_DISABLED
+    PUSHBUTTON      "Browse...",IDC_btnBrowse,250,126,66,16
+    PUSHBUTTON      "Settigs...",IDC_btnSettings,250,162,66,16
+    CONTROL         "",IDC_listInputFile,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,26,235,87
+    CONTROL         "",IDC_listOutputFile,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,163,237,95
+    EDITTEXT        IDC_editSaveFolder,7,128,236,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Folder to save converted files:",IDC_staticSaveFolder,7,118,134,7
+    LTEXT           "Converted files:",IDC_staticOutputFiles,7,153,108,9
+    CONTROL         "All to one",IDC_checkBox,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,253,225,63,15
+    PUSHBUTTON      "Remove",IDC_btnRemove,250,59,66,15,WS_DISABLED
+    PUSHBUTTON      "Convert...",IDC_btn,252,241,64,17,WS_DISABLED
+    PUSHBUTTON      "Help",IDC_btnHelp,251,191,65,15
+    LTEXT           "Files to convert:",IDC_staticFilesToConvert,7,15,309,10
+END
+
+IDD_SETTINGSDLG DIALOGEX 0, 0, 189, 81
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Settings"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    CONTROL         "Get Author",IDC_checkAuthor,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,7,71,19
+    CONTROL         "Get Subject",IDC_checkSubject,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,24,65,16
+    CONTROL         "Get Title",IDC_checkTitle,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,40,47,15
+    CONTROL         "Get Keywords",IDC_checkKeywords,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,22,53,73,20
+    PUSHBUTTON      "OK",IDC_btnOk,124,22,48,15
+    PUSHBUTTON      "Cancel",IDC_btnCancel,123,40,49,16
+END
+
+IDD_PROGRESSDLG DIALOGEX 0, 0, 217, 106
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Converting..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "Overal Progress:",IDC_STATIC,7,7,203,11
+    PUSHBUTTON      "Cancel",IDC_btnCancel,83,84,52,15
+    CONTROL         "",IDC_PROGRESS1,"msctls_progress32",PBS_SMOOTH | WS_BORDER,7,19,203,14
+    LTEXT           "Static",IDC_STATIC1,7,41,203,9
+END
+
+IDD_PASSWORDDLG DIALOGEX 0, 0, 219, 89
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Password"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "is protected",IDC_staticCurFile,35,7,177,19
+    EDITTEXT        IDC_editPassword,84,31,112,13,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "Enter Password:",IDC_STATIC,14,33,70,15
+    PUSHBUTTON      "OK",IDC_btnOk,27,55,51,15
+    PUSHBUTTON      "Ignore",IDC_btnIgnore,87,55,52,14
+    PUSHBUTTON      "Ignore All",IDC_btnIgnoreAll,147,55,52,14
+    ICON            IDI_ICON1,IDC_STATIC,7,7,20,20,SS_CENTERIMAGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAINDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 316
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 258
+    END
+
+    IDD_SETTINGSDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 182
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+
+    IDD_PROGRESSDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 99
+    END
+
+    IDD_PASSWORDDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 212
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_WARNING             "Warning"
+    IDS_FILESLIMITEXCEDED   "Limit exceeded. You can't add any more file."
+    IDS_ERROR               "Error"
+    IDS_REGSAVEFAIL         "Failed to save string in registry."
+    IDS_FOLDERNOTEXISTS     "Folder %s does not exists. Can't save file(s)."
+    IDS_CANTCREATEPROCESS   "Can't create process ""%s""."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_FILEALREADYADDED    "Can't find file"
+    IDS_PROTECTED           """%s"" is protected. Please enter a Document Open Password."
+    IDS_CANTOPEN            "Can't open file ""%s"""
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+

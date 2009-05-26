@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <?define WixUINext = "Next"?>
+    <?define WixUIBack = "Back"?>
+    <?define WixUICancel = "Cancel"?>
+    <?define AdditionalTasksDlg_Title = "Select Additional Tasks"?>
+    <?define AdditionalTasksDlg_Description = "Which additional tasks should be performed?"?>
+    <?define AdditionalTasksDlg_IconLabel = "Additional icons:"?>
+    <?define AdditionalTasksDlg_IconCheckBox = "Create a desktop icon"?>
+    
+    <Property Id="AddIcon" Value="1"/>
+
+    <UI>
+      <Dialog Id="AdditionalTasksDlg" Width="370" Height="270" Title="[ApplicationName] Setup">
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="$(var.WixUINext)" />
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="$(var.WixUIBack)" />
+        <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="$(var.WixUICancel)">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+
+        <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="$(var.AdditionalTasksDlg_Description)" />
+        <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="$(var.AdditionalTasksDlg_Title)" >
+          <Text>{\WixUI_Font_Title}Select Additional Tasks</Text>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+
+        <Control Id="IconLabel" Type="Text" X="20" Y="60" Width="290" Height="15" Text="$(var.AdditionalTasksDlg_IconLabel)" />
+        <Control Id="IconCheckBox" Type="CheckBox" X="20" Y="80" Width="330" Height="18" CheckBoxValue="1" Property="AddIcon" Text="$(var.AdditionalTasksDlg_IconCheckBox)" />
+      </Dialog>
+    </UI>
+
+    <?undef AdditionalTasksDlg_IconCheckBox?>
+    <?undef AdditionalTasksDlg_IconLabel?>
+    <?undef AdditionalTasksDlg_Description?>
+    <?undef AdditionalTasksDlg_Title?>
+    <?undef WixUICancel?>
+    <?undef WixUIBack?>
+    <?undef WixUINext?>
+	</Fragment>
+</Wix>

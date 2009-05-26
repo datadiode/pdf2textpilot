@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+    <param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Overview">
+        <param name="Local" value="PDF2Text\_Overview.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Getting Started">
+        <param name="Local" value="PDF2Text\_GettingStarted.html">
+        </OBJECT> 
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Command Line">
+        <param name="Local" value="PDF2Text\_CMDLine.html">
+       </OBJECT> 
+<LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Open Source">
+        <param name="Local" value="PDF2Text\_Open_Source.html">
+        </OBJECT> 
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="System Requirements">
+        <param name="Local" value="PDF2Text\_SystemReq.html">
+        </OBJECT>
+ <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="PDF Library">
+        <param name="Local" value="PDF2Text\_PDF_LIb.html">
+        </OBJECT>
+ <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Other PDF-Related Products">
+        <param name="Local" value="PDF2Text\_Other_PDF_Prod.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Technical Support">
+        <param name="Local" value="PDF2Text\_TechSupp.html">
+        </OBJECT> 
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Two Pilots' Web Site">
+        <param name="Local" value="http://www.colorpilot.com">
+        <param name="ImageNumber" value="15">
+        </OBJECT>
+</UL>
+</BODY></HTML>

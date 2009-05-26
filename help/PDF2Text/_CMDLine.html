@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title>PDF2Text Pilot</title>
+    <meta http-equiv="Content-Type" content="text/html"/>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
+</head>
+<body bgcolor="white" class="text">
+
+<img src="logo.gif"/>
+<p class="title">Command Line</p>
+<p class="subtitle">Command line specification</p>
+<p>The application may be run directly from the command line, without GUI.<br>
+The format of command line is:</p>
+
+
+   <p class="rshift"><b>PDF2Text Pilot.exe</b> ((<b>SrcFile</b> (<b>DstFile</b>)) |
+   (/inlist <b>SrcListFile</b> /outlist <b>DstListFile</b>) |
+   (/inlist <b>SrcListFile</b> /outdir <b>DstDir</b>)) [<b>options</b>]</p>
+
+   <p class="rshift">
+   i.e.:<br>
+   <br>
+   <b>PDF2Text Pilot.exe</b> <b>SrcFile</b> <b>DstFile</b> [<b>options</b>]<br>
+       or<br>
+   <b>PDF2Text Pilot.exe</b> /inlist <b>SrcListFile</b> /outlist <b>DstListFile</b> [<b>options</b>]<br>
+       or<br>
+   <b>PDF2Text Pilot.exe</b> /inlist <b>SrcListFile</b> /outdir <b>DstDir</b> [<b>options</b>]<br>
+   </p>
+
+   <p>Where:</p>
+
+   <p class="rshift"><b>SrcFile</b> - the path to a PDF file to be converted to text file. It can be
+   absolute (ex: <i>"C:\documents\some.pdf"</i>) or relative (ex:
+   <i>"some.pdf"</i>)</p>
+
+   <p class="rshift"><b>DstFile</b> - the path to a created text file.
+   If it is omitted then <b>txt</b> extension is added to <b>SrcFile</b> (ex: if <b>SrcFile</b>
+   is <i>"C:\test.pdf"</i> then <b>DstFile</b> is set to <i>"C:\test.pdf.txt"</i>).
+   It can also be absolute (ex: <i>"C:\Documents\books\some_book.txt"</i>) or relative (ex:
+   <i>"some_book.txt"</i>)</p>
+
+   <p class="rshift"><b>SrcListFile</b> - the path to a file that contains a list of files to
+   be converted to text files. It can also be absolute or relative. The file must contain one file name
+   per line. Here is the content of such file, for example:
+           <div align="center"><br><img src="scrshot1.gif"><br>
+           <i>Example of SrcListFile content.</i></div>
+   </p>
+
+   <p class="rshift"><b>DstListFile</b> - the path to a file that contains a list of file names
+   to be saved as. It can also be absolute or relative. The file must contain one file name per
+   line. Here is the content of such file, for example: 
+           <div align="center"><br><img src="scrshot2.gif"><br>
+           <i>Example of DstListFile content.</i></div>
+   </p>
+
+   <p class="rshift"><b>Please note</b>: The number of files listed in <b>SrcListFile</b> MUST
+   match the number of files listed in <b>DstListFile</b>.</p>
+
+   <p class="rshift"><b>DstDir</b> - the path to a directory where created files will be saved
+   to. It can also be absolute or relative. All new file names will be the same as the source
+   file names, and have the extension <i>.txt</i>. (ex: <i>"C:\Documents\books\TXT"</i>)
+   </p>
+
+   <p class="rshift"><b>options</b> - the list of secondary parameters that allows you to set
+   detailed properties of a created document.<br>
+
+   <br>
+   These parameters are:<br>
+   <br>  
+   <b>/all2one</b> - set this parameter if you want to obtain one text file from all input files.<br>
+   <b>/password value</b> - set this parameter if PDF document is protected.<br>
+   <b>/author</b> - the text files will have the same settings with the PDF file.<br>
+   <b>/subject</b> - the text files will have the same settings with the PDF file.<br>
+   <b>/title</b> - the text files will have the same settings with the PDF file.<br>
+   <b>/keywords</b> - the text files will have the same settings with the PDF file<br>
+  
+   </p>
+
+   
+<p class="subtitle">Returned codes</p>
+<table border="0">
+ <col align="right" width="30">
+ <col align="left">
+ <tr><td><b>-1</b>&nbsp;</td><td>Command line format error. Occurs when parameters are set incorrectly.</td></tr>
+ <tr><td><b>-2</b>&nbsp;</td><td>Can't open the PDF file.</td></tr>
+<tr><td><b>-3</b>&nbsp;</td><td>The output path is not correct.</td></tr>
+<tr><td><b>-4</b>&nbsp;</td><td>The output file name is not correct.</td></tr>
+<tr><td><b>-5</b>&nbsp;</td><td>Out-folder is not found.</td></tr>
+<tr><td><b>-7</b>&nbsp;</td><td>Can't open the input list file.</td></tr>
+<tr><td><b>-10</b>&nbsp;</td><td>Can't open the output list file.</td></tr>
+<tr><td><b>-13</b>&nbsp;</td><td>Input list does not match the output list. Occurs when the number of files
+specified in the input list is not equal to the number of files specified in the output list.</td></tr>
+
+</table>
+
+
+<p class="subtitle">Command line examples</p>
+<ul>
+  <li><code>PDF2Text Pilot.exe "D:\Documents\my.pdf" "D:\Documents\my.txt"</code><br><br>
+  Convert the file <i>D:\Documents\my.pdf</i> into text file with default settings and save it as <i>D:\Documents\my.txt</i>.
+  <br><br><br></li>
+
+  <li><code>PDF2Text Pilot.exe "thePDF.pdf" "theTXT.txt" /author /subject /title   /password "pass"</code><br><br>
+  Convert the file <i>"thePDF.pdf"</i> into text file and save it as <i>"theTXT.txt</i>. Sets the author, subject, and title in text file. The document "thePDF.pdf" is protected. It can be opened using the password "pass".
+  <br><br><br></li>
+
+  <li><code>PDF2Text Pilot.exe /inlist src.lst /outdir "D:\docs\TXT</code><br><br>
+  Convert the PDF files listed in <i>"src.lst"</i> into text files and saves them into directory <i>"D:\docs\TXT"</i>.
+<br><br><br></li>
+</ul>
+
+<p>&nbsp;</p>
+<p>If you have any questions, feel free to contact us using our online form: <a href="http://www.colorpilot.com/support.html" target="_blank">http://www.colorpilot.com/support.html</a></p>
+
+</body>
+</html>

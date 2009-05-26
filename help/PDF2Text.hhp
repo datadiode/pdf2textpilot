@@ -1,0 +1,21 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Help.chm
+Contents file=PDF2Text.hhc
+Default topic=PDF2Text\_Overview.html
+Display compile progress=Yes
+Language=0x409 English (United States)
+Title=PDF2Text Help
+
+
+[FILES]
+PDF2Text\_Overview.html
+PDF2Text\_GettingStarted.html
+PDF2Text\_CMDLine.html
+PDF2Text\_Open_Source.html
+PDF2Text\_SystemReq.html
+PDF2Text\_PDF_LIb.html
+PDF2Text\_TechSupp.html
+
+[INFOTYPES]
+

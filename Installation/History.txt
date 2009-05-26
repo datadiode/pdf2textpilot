@@ -1,0 +1,18 @@
+PDF2Text Pilot
+
+[           Legend:          ]
+[ + Added feature            ]
+[ * Improved/changed feature ]
+[ - Bug fixed       ]
+
+Version 2.0 - 09.04.2009
++Command line
++Ability to input a password in files protected by password PDF
+*Converting occurs a separate thread
+*User interface design is changed
+*PDF generatign engine is improved
+-Minor bug-fixes
+
+
+Version 1.0 - 20.03.2009
+Initial release.

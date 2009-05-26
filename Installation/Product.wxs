@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+
+  <?define MyApplicationName="PDF2Text Pilot"?>
+  <?define MyManufacturerName="Two Pilots"?>
+  <?define FeedbackPage="http://www.colorpilot.com/uninstall.php?product=PDF2Text%20Pilot&version=2.0"?>
+
+  <Product Id="DE2ABDC9-5171-453b-B6FB-892D4981A24D"
+           Name="$(var.MyApplicationName)"
+           Language="1033"
+           Version="1.0.0.0"
+           Manufacturer="$(var.MyManufacturerName)"
+           UpgradeCode="248C7F68-020D-4934-853F-1FE02EA67D74">
+    <Package InstallerVersion="300" Compressed="yes" />
+
+
+
+    <!--Check OS version on the user's machine-->
+    <?define Cond_VersionNT = "This application is only supported on Windows XP, Windows Server 2003, Windows Vista, or higher."?>
+
+    <Condition Message="$(var.Cond_VersionNT)">
+      <![CDATA[Installed OR (VersionNT >= 501)]]>
+    </Condition>
+
+    <?undef Cond_VersionNT?>
+
+
+    <!--Install-->
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONROOTDIRECTORY" Name="$(var.MyApplicationName)">
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="$(var.MyApplicationName)"/>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+    </Directory>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="MyApplicationFile" Guid="9CAEC4AF-4C02-4d6d-ABCB-FB025A1A3288">
+        <File Id ="MyApplicationFile"
+              Name="PDF2Text.exe"
+              Source="..\PDF2Text\Release\PDF2Text.exe"
+              DiskId="1"
+              KeyPath="yes"
+              Checksum="yes">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="ReadMe" Guid="F64D40A7-BAB0-4803-A64C-457A257CA7FF">
+        <File Id ="ReadMe"
+              Name="Readme.txt"
+              Source="Readme.txt"
+              DiskId="1"
+              KeyPath="yes"
+              Checksum="yes">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="History" Guid="70E3EE58-E836-4a1a-86F0-8086F40A18CA">
+        <File Id ="History"
+              Name="History.txt"
+              Source="History.txt"
+              DiskId="1"
+              KeyPath="yes"
+              Checksum="yes">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="License" Guid="639F6391-6F64-44a7-B81A-2076FEB5B30D">
+        <File Id ="License"
+              Name="License.rtf"
+              Source="License.rtf"
+              DiskId="1"
+              KeyPath="yes"
+              Checksum="yes">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="Documentation" Guid="96C4A64F-9A5E-4918-88CB-15675F40B9D2">
+        <File Id ="Documentation"
+              Name="Help.chm"
+              Source="..\Help\Help.chm"
+              DiskId="1"
+              KeyPath="yes"
+              Checksum="yes">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="LibDocumentation" Guid="119BBB27-96D0-4e62-98B1-8CF48AB0763B">
+        <File Id ="LibDocumentation"
+              Name="PDF Library.chm"
+              Source="..\Help\PDF Library.chm"
+              DiskId="1"
+              KeyPath="yes"
+              Checksum="yes">
+        </File>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+      <Component Id="InteropPDFCreatorPilotLibDLL" Guid="92CACC49-8E24-4fc9-BC3F-4B4CDC539CC4">
+        <File Id ="InteropPDFCreatorPilotLibDLL"
+              Name="PDFCreatorPilot.dll"
+              Source="..\dlls\PDFCreatorPilot.dll"
+              DiskId="1"
+              KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+
+    <Icon Id="PDF2TextIcon.exe"
+          SourceFile="..\PDF2Text\res\PDF2Text.ico"/>
+
+    <Property Id="ARPRODUCTION" Value="PDF2TextIcon.exe" />
+
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationDesktopShortcut" Guid="3060DDE4-EC62-43f0-A5A2-F296A672B704">
+        <Condition>
+          (AddIcon = 1) AND (NOT Installed)
+        </Condition>
+        <Shortcut Id="ApplicationDesktopShortcut"
+                  Name="$(var.MyApplicationName)"
+                  Target="[APPLICATIONROOTDIRECTORY]PDF2Text.exe"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"
+                  Icon="PDF2TextIcon.exe" />
+        <RegistryValue Root="HKCU"
+                       Key="Software\$(var.MyManufacturerName)\PDF2Text"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>    
+
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="538FC638-079E-4630-88C9-AA0F39E3789D">
+        <Shortcut Id="DocumentationStartMenuShortcut"
+                  Name="Help"
+                  Target="[APPLICATIONROOTDIRECTORY]Help.chm"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <Shortcut Id="LibDocumentationStartMenuShortcut"
+                  Name="PDF Library"
+                  Target="[APPLICATIONROOTDIRECTORY]PDF Library.chm"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="$(var.MyApplicationName)"
+                  Target="[APPLICATIONROOTDIRECTORY]PDF2Text.exe"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <Shortcut Id="UninstallProduct"
+                  Name="Uninstall or Repair"
+                  Target="[System64Folder]msiexec.exe"
+                  Arguments="/i [ProductCode]"/>
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU"
+                       Key="Software\$(var.MyManufacturerName)\PDF2Text"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes"/>        
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="RegistryEntries1" Guid="46A53A4F-5FA3-484d-8BBD-5C3DA9DFAB8A">
+        <RegistryValue Root="HKCU"
+                     Key="Software\$(var.MyManufacturerName)\PDF2Text"
+                     Name="LastOpenFolder"
+                     Type="string"
+                     Value="1"
+                     KeyPath="yes"/>        
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="RegistryEntries2" Guid="6B91762F-1BAA-4591-8662-A0F0A6FBFB1A">
+        <RegistryValue Root="HKCU"
+                     Key="Software\$(var.MyManufacturerName)\PDF2Text"
+                     Name="SaveFolder"
+                     Type="string"
+                     Value="1"
+                     KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="MyApplicationRegistryEntries" Guid="93CDF0D1-65E8-4fcd-9299-3F7CCE4C14EF">
+        <RegistryKey Root="HKLM"
+                     Key="Software\$(var.MyManufacturerName)\PDF2Text"
+                     Action="createAndRemoveOnUninstall">          
+          <RegistryValue Type="string" Value="[APPLICATIONROOTDIRECTORY]" KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="PDFCreatorPilotRegistryEntries" Guid="67EF10B4-65AC-4628-93DA-28C88A5EE321">
+        <RegistryKey Root="HKLM"
+                     Key="Software\Two Pilots\PDF Creator Pilot"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Value="[APPLICATIONROOTDIRECTORY]" KeyPath="yes"/>
+        </RegistryKey>
+        <RegistryValue Root="HKLM" Key="Software\Classes\AppID\PDFCreatorPilot.dll" Name="AppID" Value="{BA02DCB1-6EBE-4709-B3F5-8DB42AB5E766}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\AppID\{BA02DCB1-6EBE-4709-B3F5-8DB42AB5E766}" Value="PDFCreatorPilot" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}" Value="PSFactoryBuffer" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\InProcServer32" Value="[APPLICATIONROOTDIRECTORY]\PDFCreatorPilot.dll" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\InProcServer32" Name="ThreadingModel" Value="Both" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}" Value="PDFDocument4 Class" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}\InprocServer32" Value="[APPLICATIONROOTDIRECTORY]\PDFCreatorPilot.dll" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}\InprocServer32" Name="ThreadingModel" Value="Apartment" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}\ProgID" Value="PDFCreatorPilot.PDFDocument4.1" Type="string" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}\Programmable" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}\TypeLib" Value="{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{465FE951-D267-4D90-A019-7994822E137E}\VersionIndependentProgID" Value="PDFCreatorPilot.PDFDocument4" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}" Value="PDFDocument3 Class" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}" Name="AppID" Value="{BA02DCB1-6EBE-4709-B3F5-8DB42AB5E766}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}\InprocServer32" Value="[APPLICATIONROOTDIRECTORY]\PDFCreatorPilot.dll" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}\InprocServer32" Name="ThreadingModel" Value="Apartment" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}\ProgID" Value="PDFCreatorPilot.PDFDocument3.1" Type="string" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}\Programmable" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}\TypeLib" Value="{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\CLSID\{4C26E4F7-A871-4E64-A390-DBEFCE574904}\VersionIndependentProgID" Value="PDFCreatorPilot.PDFDocument3" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}" Value="IPDFDocument3" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\ProxyStubClsid" Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\ProxyStubClsid32" Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\TypeLib" Value="{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\TypeLib" Name="Version" Value="1.0" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{11D3D317-C7AD-4895-8BE4-1236F78CC63A}\NumMethods" Value="419" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{A6AF52AE-5767-49FA-8A9E-7D22643D6301}" Value="IPDFDocument4" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{A6AF52AE-5767-49FA-8A9E-7D22643D6301}\NumMethods" Value="365" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{A6AF52AE-5767-49FA-8A9E-7D22643D6301}\ProxyStubClsid32" Value="{11D3D317-C7AD-4895-8BE4-1236F78CC63A}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{A6AF52AE-5767-49FA-8A9E-7D22643D6301}\ProxyStubClsid" Value="{00020424-0000-0000-C000-000000000046}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{A6AF52AE-5767-49FA-8A9E-7D22643D6301}\TypeLib" Value="{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\Interface\{A6AF52AE-5767-49FA-8A9E-7D22643D6301}\TypeLib" Name="Version" Value="1.0" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument3" Value="PDFDocument3 Class" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument3\CLSID" Value="{4C26E4F7-A871-4E64-A390-DBEFCE574904}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument3\CurVer" Value="PDFCreatorPilot.PDFDocument3.1" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument3.1" Value="PDFDocument3 Class" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument3.1\CLSID" Value="{4C26E4F7-A871-4E64-A390-DBEFCE574904}" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument4" Value="PDFDocument4 Class" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument4\CLSID" Value="{465FE951-D267-4D90-A019-7994822E137E}" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument4\CurVer" Value="PDFCreatorPilot.PDFDocument4.1" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument4.1" Value="PDFDocument4 Class" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\PDFCreatorPilot.PDFDocument4.1\CLSID" Value="{465FE951-D267-4D90-A019-7994822E137E}" Type="string" />
+
+        <RegistryValue Root="HKLM" Key="Software\Classes\TypeLib\{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}\1.0" Value="PDFCreatorPilot Type Library" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\TypeLib\{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}\1.0\0\win32" Value="[APPLICATIONROOTDIRECTORY]\PDFCreatorPilot.dll" Type="string" />
+        <RegistryValue Root="HKLM" Key="Software\Classes\TypeLib\{F68529F8-9F30-4AEE-B5D0-6DA79CB9E802}\1.0\FLAGS" Value="0" Type="string" />
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id="ProductFeature" Title="$(var.MyApplicationName)" Level="1">
+      <ComponentRef Id="Documentation"/>
+      <ComponentRef Id="LibDocumentation"/>
+      <ComponentRef Id="ReadMe"/>
+      <ComponentRef Id="History"/>
+      <ComponentRef Id="License"/>
+      <ComponentRef Id="MyApplicationFile" />      
+      <ComponentRef Id="InteropPDFCreatorPilotLibDLL"/>
+      <ComponentRef Id="MyApplicationRegistryEntries" />
+      <ComponentRef Id="PDFCreatorPilotRegistryEntries" />
+      <ComponentRef Id="RegistryEntries1" />
+      <ComponentRef Id="RegistryEntries2" />
+      <ComponentRef Id="ApplicationDesktopShortcut" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+
+
+    <UIRef Id="MyWixUI_InstallDir"/>
+
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf"/>
+    <WixVariable Id="WixUIBannerBmp" Value="Bitmaps/bannrbmp.bmp"/>
+    <WixVariable Id="WixUIDialogBmp" Value="Bitmaps/dlgbmp.bmp"/>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONROOTDIRECTORY"/>
+
+    <CustomAction Id="SetApplicationPath" Property="WixShellExecTarget" Value="[#MyApplicationFile]"/>
+    <CustomAction Id="SetURL" Property="WixShellExecTarget" Value="$(var.FeedbackPage)"/>
+
+    <InstallUISequence>
+      <Custom Action="SetApplicationPath" After="ProgressDlg">NOT Installed</Custom>
+      <Custom Action="SetURL" After="ProgressDlg">WixUI_InstallMode = "Remove"</Custom>
+    </InstallUISequence>
+
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes"/>
+    <CustomAction Id="OpenFeedback" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes"/>
+
+    <UI>
+      <Property Id="LAUNCH_APP_CHECKBOX" Value="1" />
+      <Property Id="OPEN_FEEDBACK_CHECKBOX" Value="1" />
+
+      <Publish Dialog="ExitDlg" Control="Finish" Event="DoAction" Value="LaunchApplication">
+        (LAUNCH_APP_CHECKBOX = 1) AND (NOT Installed)
+      </Publish>
+      <Publish Dialog="ExitDlg" Control="Finish" Event="DoAction" Value="OpenFeedback">
+        (OPEN_FEEDBACK_CHECKBOX = 1) AND (WixUI_InstallMode = "Remove")
+      </Publish>
+    </UI>
+
+    <UI>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="AdditionalTasksDlg" Order="4">1</Publish>
+      <Publish Dialog="AdditionalTasksDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+      <Publish Dialog="AdditionalTasksDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="AdditionalTasksDlg">1</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Install" Event="NewDialog" Value="ProgressDlg">1</Publish>
+    </UI>
+
+  </Product>
+
+  <?undef FeedbackPage?>
+  <?undef MyManufacturerName?>
+  <?undef MyApplicationName?>
+
+</Wix>
